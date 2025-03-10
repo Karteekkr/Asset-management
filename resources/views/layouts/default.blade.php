@@ -142,69 +142,7 @@ dir="{{ Helper::determineLanguageDirection() }}">
                     <!-- Navbar Right Menu -->
                     <div class="navbar-custom-menu">
                         <ul class="nav navbar-nav">
-                            @can('index', \App\Models\Asset::class)
-                                <li aria-hidden="true"{!! (Request::is('hardware*') ? ' class="active"' : '') !!}>
-                                    <a href="{{ url('hardware') }}" {{$snipeSettings->shortcuts_enabled == 1 ? "accesskey=1" : ''}} tabindex="-1" data-tooltip="true" data-placement="bottom" data-title="{{ trans('general.assets') }}">
-                                        <x-icon type="assets" class="fa-fw" />
-                                        <span class="sr-only">{{ trans('general.assets') }}</span>
-                                    </a>
-                                </li>
-                            @endcan
-                            @can('view', \App\Models\License::class)
-                                <li aria-hidden="true"{!! (Request::is('licenses*') ? ' class="active"' : '') !!}>
-                                    <a href="{{ route('licenses.index') }}" {{$snipeSettings->shortcuts_enabled == 1 ? "accesskey=2" : ''}} tabindex="-1" data-tooltip="true" data-placement="bottom" data-title="{{ trans('general.licenses') }}">
-                                        <x-icon type="licenses" class="fa-fw" />
-                                        <span class="sr-only">{{ trans('general.licenses') }}</span>
-                                    </a>
-                                </li>
-                            @endcan
-                            @can('index', \App\Models\Accessory::class)
-                                <li aria-hidden="true"{!! (Request::is('accessories*') ? ' class="active"' : '') !!}>
-                                    <a href="{{ route('accessories.index') }}" {{$snipeSettings->shortcuts_enabled == 1 ? "accesskey=3" : ''}} tabindex="-1" data-tooltip="true" data-placement="bottom" data-title="{{ trans('general.accessories') }}">
-                                        <x-icon type="accessories" class="fa-fw" />
-                                        <span class="sr-only">{{ trans('general.accessories') }}</span>
-                                    </a>
-                                </li>
-                            @endcan
-                            @can('index', \App\Models\Consumable::class)
-                                <li aria-hidden="true"{!! (Request::is('consumables*') ? ' class="active"' : '') !!}>
-                                    <a href="{{ url('consumables') }}" {{$snipeSettings->shortcuts_enabled == 1 ? "accesskey=4" : ''}} tabindex="-1" data-tooltip="true" data-placement="bottom" data-title="{{ trans('general.consumables') }}">
-                                        <x-icon type="consumables" class="fa-fw" />
-                                        <span class="sr-only">{{ trans('general.consumables') }}</span>
-                                    </a>
-                                </li>
-                            @endcan
-                            @can('view', \App\Models\Component::class)
-                                <li aria-hidden="true"{!! (Request::is('components*') ? ' class="active"' : '') !!}>
-                                    <a href="{{ route('components.index') }}" {{$snipeSettings->shortcuts_enabled == 1 ? "accesskey=5" : ''}} tabindex="-1" data-tooltip="true" data-placement="bottom" data-title="{{ trans('general.components') }}">
-                                        <x-icon type="components" class="fa-fw" />
-                                        <span class="sr-only">{{ trans('general.components') }}</span>
-                                    </a>
-                                </li>
-                            @endcan
-
-                            @can('index', \App\Models\Asset::class)
-                                <li>
-                                    <form class="navbar-form navbar-left form-horizontal" role="search"
-                                          action="{{ route('findbytag/hardware') }}" method="get">
-                                        <div class="col-xs-12 col-md-12">
-                                            <div class="col-xs-12 form-group">
-                                                <label class="sr-only" for="tagSearch">
-                                                    {{ trans('general.lookup_by_tag') }}
-                                                </label>
-                                                <input type="text" class="form-control" id="tagSearch" name="assetTag" placeholder="{{ trans('general.lookup_by_tag') }}">
-                                                <input type="hidden" name="topsearch" value="true" id="search">
-                                            </div>
-                                            <div class="col-xs-1">
-                                                <button type="submit" id="topSearchButton" class="btn btn-primary pull-right">
-                                                    <x-icon type="search" />
-                                                    <span class="sr-only">{{ trans('general.search') }}</span>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </li>
-                            @endcan
+                           
 
                             @can('admin')
                                 <li class="dropdown" aria-hidden="true">
@@ -264,12 +202,12 @@ dir="{{ Helper::determineLanguageDirection() }}">
                                     </ul>
                                 </li>
                             @endcan
-
+<!-- 
                             @can('admin')
                                 @if ($snipeSettings->show_alerts_in_menu=='1')
-                                    <!-- Tasks: style can be found in dropdown.less -->
+                                    Tasks: style can be found in dropdown.less -->
                                     <?php $alert_items = Helper::checkLowInventory(); $deprecations = Helper::deprecationCheck()?>
-
+<!-- 
                                     <li class="dropdown tasks-menu">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                             <x-icon type="alerts" />
@@ -289,12 +227,12 @@ dir="{{ Helper::determineLanguageDirection() }}">
                                             <li class="header">{{ trans_choice('general.quantity_minimum', count($alert_items)) }}</li>
                                             <li>
                                                 <!-- inner menu: contains the actual data -->
-                                                <ul class="menu">
+                                                <!-- <ul class="menu">
 
                                                     @for($i = 0; count($alert_items) > $i; $i++)
 
                                                         <li><!-- Task item -->
-                                                            <a href="{{ route($alert_items[$i]['type'].'.show', $alert_items[$i]['id'])}}">
+                                                            <!-- <a href="{{ route($alert_items[$i]['type'].'.show', $alert_items[$i]['id'])}}">
                                                                 <h2 class="task_menu">{{ $alert_items[$i]['name'] }}
                                                                     <small class="pull-right">
                                                                         {{ $alert_items[$i]['remaining'] }} {{ trans('general.remaining') }}
@@ -308,18 +246,18 @@ dir="{{ Helper::determineLanguageDirection() }}">
                                                                          aria-valuemin="0" aria-valuemax="100">
                                                                         <span class="sr-only">{{ $alert_items[$i]['percent'] }}% Complete</span>
                                                                     </div>
-                                                                </div>
-                                                            </a>
-                                                        </li>
+    </div>
+                                                            </a> -->
+                                                        <!-- </li> -->
                                                         <!-- end task item -->
                                                     @endfor
                                                 </ul>
-                                            </li>
+                                            <!-- </li>
                                             {{-- <li class="footer">
                                               <a href="#">{{ trans('general.tasks_view_all') }}</a>
                                             </li> --}}
                                         </ul>
-                                    </li>
+                                    </li> -->
                                 @endcan
                             @endif
 
@@ -411,14 +349,14 @@ dir="{{ Helper::determineLanguageDirection() }}">
                             @endif
 
 
-                            @can('superadmin')
+                            <!-- @can('superadmin')
                                 <li>
                                     <a href="{{ route('settings.index') }}">
                                         <x-icon type="admin-settings" />
                                         <span class="sr-only">{{ trans('general.admin') }}</span>
                                     </a>
                                 </li>
-                            @endcan
+                            @endcan -->
                         </ul>
                     </div>
                 </nav>

@@ -730,7 +730,7 @@ Route::withoutMiddleware(['web'])->get(
 
 
 Route::middleware(['auth'])->get(
-    '/',
+    '/dashboard',
     [DashboardController::class, 'index']
 )->name('home')
     ->breadcrumbs(fn (Trail $trail) =>
