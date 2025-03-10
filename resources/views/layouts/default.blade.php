@@ -390,7 +390,7 @@ dir="{{ Helper::determineLanguageDirection() }}">
                                     <x-icon type="angle-left" class="pull-right fa-fw"/>
                                 </a>
                                 <ul class="treeview-menu">
-                                    <li>
+                                    <!-- <li>
                                         <a href="{{ url('hardware') }}">
                                             <x-icon type="circle" class="text-grey fa-fw"/>
                                             {{ trans('general.list_all') }}
@@ -398,7 +398,7 @@ dir="{{ Helper::determineLanguageDirection() }}">
                                                 {{ (isset($total_assets)) ? $total_assets : '' }}
                                             </span>
                                         </a>
-                                    </li>
+                                    </li> -->
 
                                     <?php $status_navs = \App\Models\Statuslabel::where('show_in_nav', '=', 1)->withCount('assets as asset_count')->get(); ?>
                                     @if (count($status_navs) > 0)
@@ -440,28 +440,28 @@ dir="{{ Helper::determineLanguageDirection() }}">
                                             <span class="badge">{{ (isset($total_undeployable_sidebar)) ? $total_undeployable_sidebar : '' }}</span>
                                         </a>
                                     </li>
-                                    <li{!! (Request::query('status') == 'byod' ? ' class="active"' : '') !!}><a
+                                    <!-- <li{!! (Request::query('status') == 'byod' ? ' class="active"' : '') !!}><a
                                                 href="{{ url('hardware?status=byod') }}">
                                             <x-icon type="x" class="text-red fa-fw" />
                                             {{ trans('general.byod') }}
                                             <span class="badge">{{ (isset($total_byod_sidebar)) ? $total_byod_sidebar : '' }}</span>
                                         </a>
-                                    </li>
-                                    <li{!! (Request::query('status') == 'Archived' ? ' class="active"' : '') !!}><a
+                                    </li> -->
+                                    <!-- <li{!! (Request::query('status') == 'Archived' ? ' class="active"' : '') !!}><a
                                                 href="{{ url('hardware?status=Archived') }}">
                                             <x-icon type="x" class="text-red fa-fw" />
                                             {{ trans('admin/hardware/general.archived') }}
                                             <span class="badge">{{ (isset($total_archived_sidebar)) ? $total_archived_sidebar : '' }}</span>
                                         </a>
-                                    </li>
-                                    <li{!! (Request::query('status') == 'Requestable' ? ' class="active"' : '') !!}><a
+                                    </li> -->
+                                    <!-- <li{!! (Request::query('status') == 'Requestable' ? ' class="active"' : '') !!}><a
                                                 href="{{ url('hardware?status=Requestable') }}">
                                             <x-icon type="checkmark" class="text-blue fa-fw" />
                                             {{ trans('admin/hardware/general.requestable') }}
                                         </a>
-                                    </li>
+                                    </li> -->
 
-                                    @can('audit', \App\Models\Asset::class)
+                                    <!-- @can('audit', \App\Models\Asset::class)
                                         <li{!! (Request::is('hardware/audit/due') ? ' class="active"' : '') !!}>
                                             <a href="{{ route('assets.audit.due') }}">
                                                 <x-icon type="due" class="text-yellow fa-fw"/>
@@ -469,9 +469,9 @@ dir="{{ Helper::determineLanguageDirection() }}">
                                                 <span class="badge">{{ (isset($total_due_and_overdue_for_audit)) ? $total_due_and_overdue_for_audit : '' }}</span>
                                             </a>
                                         </li>
-                                    @endcan
+                                    @endcan -->
 
-                                    @can('checkin', \App\Models\Asset::class)
+                                    <!-- @can('checkin', \App\Models\Asset::class)
                                     <li{!! (Request::is('hardware/checkins/due') ? ' class="active"' : '') !!}>
                                         <a href="{{ route('assets.checkins.due') }}">
                                             <x-icon type="due" class="text-orange fa-fw"/>
@@ -479,18 +479,18 @@ dir="{{ Helper::determineLanguageDirection() }}">
                                             <span class="badge">{{ (isset($total_due_and_overdue_for_checkin)) ? $total_due_and_overdue_for_checkin : '' }}</span>
                                         </a>
                                     </li>
-                                    @endcan
+                                    @endcan -->
 
                                     <li class="divider">&nbsp;</li>
-                                    @can('checkin', \App\Models\Asset::class)
+                                    <!-- @can('checkin', \App\Models\Asset::class)
                                         <li{!! (Request::is('hardware/quickscancheckin') ? ' class="active"' : '') !!}>
                                             <a href="{{ route('hardware/quickscancheckin') }}">
                                                 {{ trans('general.quickscan_checkin') }}
                                             </a>
                                         </li>
-                                    @endcan
+                                    @endcan -->
 
-                                    @can('checkout', \App\Models\Asset::class)
+                                    <!-- @can('checkout', \App\Models\Asset::class)
                                         <li{!! (Request::is('hardware/bulkcheckout') ? ' class="active"' : '') !!}>
                                             <a href="{{ route('hardware.bulkcheckout.show') }}">
                                                 {{ trans('general.bulk_checkout') }}
@@ -500,9 +500,9 @@ dir="{{ Helper::determineLanguageDirection() }}">
                                             <a href="{{ route('assets.requested') }}">
                                                 {{ trans('general.requested') }}</a>
                                         </li>
-                                    @endcan
+                                    @endcan -->
 
-                                    @can('create', \App\Models\Asset::class)
+                                    <!-- @can('create', \App\Models\Asset::class)
                                         <li{!! (Request::query('Deleted') ? ' class="active"' : '') !!}>
                                             <a href="{{ url('hardware?status=Deleted') }}">
                                                 {{ trans('general.deleted') }}
@@ -513,8 +513,8 @@ dir="{{ Helper::determineLanguageDirection() }}">
                                                 {{ trans('general.asset_maintenances') }}
                                             </a>
                                         </li>
-                                    @endcan
-                                    @can('admin')
+                                    @endcan -->
+                                    <!-- @can('admin')
                                         <li>
                                             <a href="{{ url('hardware/history') }}">
                                                 {{ trans('general.import-history') }}
@@ -527,7 +527,7 @@ dir="{{ Helper::determineLanguageDirection() }}">
                                                 {{ trans('general.bulkaudit') }}
                                             </a>
                                         </li>
-                                    @endcan
+                                    @endcan -->
                                 </ul>
                             </li>
                         @endcan
@@ -547,14 +547,14 @@ dir="{{ Helper::determineLanguageDirection() }}">
                                 </a>
                             </li>
                         @endcan
-                        @can('view', \App\Models\Consumable::class)
+                        <!-- @can('view', \App\Models\Consumable::class)
                             <li{!! (Request::is('consumables*') ? ' class="active"' : '') !!}>
                                 <a href="{{ url('consumables') }}">
                                     <x-icon type="consumables" class="fa-fw" />
                                     <span>{{ trans('general.consumables') }}</span>
                                 </a>
                             </li>
-                        @endcan
+                        @endcan -->
                         @can('view', \App\Models\Component::class)
                             <li{!! (Request::is('components*') ? ' class="active"' : '') !!}>
                                 <a href="{{ route('components.index') }}">
@@ -563,14 +563,14 @@ dir="{{ Helper::determineLanguageDirection() }}">
                                 </a>
                             </li>
                         @endcan
-                        @can('view', \App\Models\PredefinedKit::class)
+                        <!-- @can('view', \App\Models\PredefinedKit::class)
                             <li{!! (Request::is('kits') ? ' class="active"' : '') !!}>
                                 <a href="{{ route('kits.index') }}">
                                     <x-icon type="kits" class="fa-fw" />
                                     <span>{{ trans('general.kits') }}</span>
                                 </a>
                             </li>
-                        @endcan
+                        @endcan -->
 
                         @can('view', \App\Models\User::class)
                             <li{!! (Request::is('users*') ? ' class="active"' : '') !!}>
@@ -630,7 +630,7 @@ dir="{{ Helper::determineLanguageDirection() }}">
                                         </li>
                                     @endcan
 
-                                    @can('view', \App\Models\Manufacturer::class)
+                                    <!-- @can('view', \App\Models\Manufacturer::class)
                                         <li>
                                             <a href="{{ route('manufacturers.index') }}" {{ (Request::is('/manufacturers') ? ' class="active"' : '') }}>
                                                 {{ trans('general.manufacturers') }}
@@ -676,7 +676,7 @@ dir="{{ Helper::determineLanguageDirection() }}">
                                                 {{ trans('general.depreciation') }}
                                             </a>
                                         </li>
-                                    @endcan
+                                    @endcan -->
                                 </ul>
                             </li>
                         @endcan
@@ -704,7 +704,7 @@ dir="{{ Helper::determineLanguageDirection() }}">
                                         <a href="{{ route('reports.audit') }}" {{ (Request::is('reports.audit') ? ' class="active"' : '') }}>
                                             {{ trans('general.audit_report') }}</a>
                                     </li>
-                                    <li>
+                                    <!-- <li>
                                         <a href="{{ url('reports/depreciation') }}" {{ (Request::is('reports/depreciation') ? ' class="active"' : '') }}>
                                             {{ trans('general.depreciation_report') }}
                                         </a>
@@ -728,19 +728,19 @@ dir="{{ Helper::determineLanguageDirection() }}">
                                         <a href="{{ url('reports/accessories') }}" {{ (Request::is('reports/accessories') ? ' class="active"' : '') }}>
                                             {{ trans('general.accessory_report') }}
                                         </a>
-                                    </li>
+                                    </li> -->
                                 </ul>
                             </li>
                         @endcan
 
-                        @can('viewRequestable', \App\Models\Asset::class)
+                        <!-- @can('viewRequestable', \App\Models\Asset::class)
                             <li{!! (Request::is('account/requestable-assets') ? ' class="active"' : '') !!}>
                                 <a href="{{ route('requestable-assets') }}">
                                     <x-icon type="requestable" class="fa-fw" />
                                     <span>{{ trans('general.requestable_items') }}</span>
                                 </a>
                             </li>
-                        @endcan
+                        @endcan -->
 
 
                     </ul>
@@ -853,7 +853,7 @@ dir="{{ Helper::determineLanguageDirection() }}">
                 </section>
 
             </div><!-- /.content-wrapper -->
-            <footer class="main-footer hidden-print" style="display:grid;flex-direction:column;">
+            <!-- <footer class="main-footer hidden-print" style="display:grid;flex-direction:column;">
 
                 <div class="1hidden-xs pull-left">
                     <div class="pull-left" >
@@ -891,7 +891,7 @@ dir="{{ Helper::determineLanguageDirection() }}">
                         </div>
                     @endif
                 </div>
-            </footer>
+            </footer> -->
         </div><!-- ./wrapper -->
 
 

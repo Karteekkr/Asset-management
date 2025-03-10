@@ -25,131 +25,181 @@
     </div>
 </div>
 @endif
+<style>
+  /* Grid container */
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive column layout */
+    gap: 25px; /* Space between boxes */
+    justify-content: center;
+    padding: 20px;
+  }
+
+  /* Dashboard boxes */
+  .dashboard {
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    color: white;
+    border-radius: 15px;
+    padding: 25px;
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  /* Hover effect */
+  .dashboard:hover {
+    transform: translateY(-8px);
+    box-shadow: 0px 12px 25px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Inner content */
+  .dashboard .inner h3 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+
+  .dashboard .inner p {
+    font-size: 18px;
+    font-weight: 500;
+    opacity: 0.9;
+  }
+
+  /* Icon style */
+  .dashboard .icon {
+    font-size: 65px;
+    opacity: 0.15;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .dashboard:hover .icon {
+    opacity: 0.4;
+    transform: scale(1.1);
+  }
+
+  /* Footer link */
+  .dashboard a.small-box-footer {
+    display: block;
+    padding: 12px;
+    font-weight: bold;
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.2);
+    transition: background 0.3s ease;
+    font-size: 14px;
+    color: white;
+    border-radius: 8px;
+  }
+
+  .dashboard:hover a.small-box-footer {
+    background: rgba(255, 255, 255, 0.3);
+  }
+
+  /* Media Query for Responsiveness */
+  @media (max-width: 768px) {
+    .grid-container {
+      grid-template-columns: repeat(auto-fit, minmax(100%, 1fr)); /* Full width in small screens */
+    }
+  }
+</style>
+
 
 <div class="row">
-  <!-- panel -->
   <div class="col-lg-2 col-xs-6">
-      <a href="{{ route('hardware.index') }}">
-    <!-- small box -->
-    <div class="dashboard small-box bg-teal">
-      <div class="inner">
-        <h3>{{ number_format(\App\Models\Asset::AssetsForShow()->count()) }}</h3>
-        <p>{{ trans('general.assets') }}</p>
-      </div>
-      <div class="icon" aria-hidden="true">
-          <x-icon type="assets" />
-      </div>
-      @can('index', \App\Models\Asset::class)
+    <a href="{{ route('hardware.index') }}">
+      <div class="dashboard small-box" style="background: linear-gradient(135deg, #00bcd4, #009688); color: white;">
+        <div class="inner">
+          <h3>{{ number_format(\App\Models\Asset::AssetsForShow()->count()) }}</h3>
+          <p>{{ trans('general.assets') }}</p>
+        </div>
+        <div class="icon"><x-icon type="assets" /></div>
         <a href="{{ route('hardware.index') }}" class="small-box-footer">{{ trans('general.view_all') }}
-            <x-icon type="arrow-circle-right" />
+          <x-icon type="arrow-circle-right" />
         </a>
-      @endcan
-    </div>
-      </a>
-  </div><!-- ./col -->
+      </div>
+    </a>
+  </div>
 
   <div class="col-lg-2 col-xs-6">
-     <a href="{{ route('licenses.index') }}">
-    <!-- small box -->
-    <div class="dashboard small-box bg-maroon">
-      <div class="inner">
-        <h3>{{ number_format($counts['license']) }}</h3>
-        <p>{{ trans('general.licenses') }}</p>
+    <a href="{{ route('licenses.index') }}">
+      <div class="dashboard small-box" style="background: linear-gradient(135deg, #8e44ad, #9b59b6); color: white;">
+        <div class="inner">
+          <h3>{{ number_format($counts['license']) }}</h3>
+          <p>{{ trans('general.licenses') }}</p>
+        </div>
+        <div class="icon"><x-icon type="licenses" /></div>
+        <a href="{{ route('licenses.index') }}" class="small-box-footer">{{ trans('general.view_all') }}
+          <x-icon type="arrow-circle-right" />
+        </a>
       </div>
-      <div class="icon" aria-hidden="true">
-          <x-icon type="licenses" />
-      </div>
-        @can('view', \App\Models\License::class)
-          <a href="{{ route('licenses.index') }}" class="small-box-footer">{{ trans('general.view_all') }}
-              <x-icon type="arrow-circle-right" />
-          </a>
-        @endcan
-    </div>
-     </a>
-  </div><!-- ./col -->
-
+    </a>
+  </div>
 
   <div class="col-lg-2 col-xs-6">
-    <!-- small box -->
-      <a href="{{ route('accessories.index') }}">
-    <div class="dashboard small-box bg-orange">
-      <div class="inner">
-        <h3> {{ number_format($counts['accessory']) }}</h3>
-        <p>{{ trans('general.accessories') }}</p>
+    <a href="{{ route('accessories.index') }}">
+      <div class="dashboard small-box" style="background: linear-gradient(135deg, #e67e22, #f39c12); color: white;">
+        <div class="inner">
+          <h3>{{ number_format($counts['accessory']) }}</h3>
+          <p>{{ trans('general.accessories') }}</p>
+        </div>
+        <div class="icon"><x-icon type="accessories" /></div>
+        <a href="{{ route('accessories.index') }}" class="small-box-footer">{{ trans('general.view_all') }}
+          <x-icon type="arrow-circle-right" />
+        </a>
       </div>
-      <div class="icon" aria-hidden="true">
-          <x-icon type="accessories" />
-      </div>
-      @can('index', \App\Models\Accessory::class)
-          <a href="{{ route('accessories.index') }}" class="small-box-footer">{{ trans('general.view_all') }}
-              <x-icon type="arrow-circle-right" />
-          </a>
-      @endcan
-    </div>
-      </a>
-  </div><!-- ./col -->
+    </a>
+  </div>
 
   <div class="col-lg-2 col-xs-6">
-    <!-- small box -->
-
-      <a href="{{ route('consumables.index') }}">
-    <div class="dashboard small-box bg-purple">
-      <div class="inner">
-        <h3> {{ number_format($counts['consumable']) }}</h3>
-        <p>{{ trans('general.consumables') }}</p>
-      </div>
-      <div class="icon" aria-hidden="true">
-          <x-icon type="consumables" />
-      </div>
-      @can('index', \App\Models\Consumable::class)
+    <a href="{{ route('consumables.index') }}">
+      <div class="dashboard small-box" style="background: linear-gradient(135deg, #8e44ad, #c0392b); color: white;">
+        <div class="inner">
+          <h3>{{ number_format($counts['consumable']) }}</h3>
+          <p>{{ trans('general.consumables') }}</p>
+        </div>
+        <div class="icon"><x-icon type="consumables" /></div>
         <a href="{{ route('consumables.index') }}" class="small-box-footer">{{ trans('general.view_all') }}
-            <x-icon type="arrow-circle-right" />
+          <x-icon type="arrow-circle-right" />
         </a>
-      @endcan
-    </div>
-  </div><!-- ./col -->
+      </div>
+    </a>
+  </div>
 
   <div class="col-lg-2 col-xs-6">
     <a href="{{ route('components.index') }}">
-   <!-- small box -->
-   <div class="dashboard small-box bg-yellow">
-     <div class="inner">
-       <h3>{{ number_format($counts['component']) }}</h3>
-       <p>{{ trans('general.components') }}</p>
-     </div>
-     <div class="icon" aria-hidden="true">
-         <x-icon type="components" />
-     </div>
-       @can('view', \App\Models\License::class)
-         <a href="{{ route('components.index') }}" class="small-box-footer">{{ trans('general.view_all') }}
-             <x-icon type="arrow-circle-right" />
-         </a>
-       @endcan
-   </div>
+      <div class="dashboard small-box" style="background: linear-gradient(135deg, #f39c12, #e74c3c); color: white;">
+        <div class="inner">
+          <h3>{{ number_format($counts['component']) }}</h3>
+          <p>{{ trans('general.components') }}</p>
+        </div>
+        <div class="icon"><x-icon type="components" /></div>
+        <a href="{{ route('components.index') }}" class="small-box-footer">{{ trans('general.view_all') }}
+          <x-icon type="arrow-circle-right" />
+        </a>
+      </div>
     </a>
- </div><!-- ./col -->
+  </div>
 
- <div class="col-lg-2 col-xs-6">
+  <div class="col-lg-2 col-xs-6">
     <a href="{{ route('users.index') }}">
-   <!-- small box -->
-   <div class="dashboard small-box bg-light-blue">
-     <div class="inner">
-       <h3>{{ number_format($counts['user']) }}</h3>
-       <p>{{ trans('general.people') }}</p>
-     </div>
-     <div class="icon" aria-hidden="true">
-         <x-icon type="users" />
-     </div>
-       @can('view', \App\Models\License::class)
-         <a href="{{ route('users.index') }}" class="small-box-footer">{{ trans('general.view_all') }}
-             <x-icon type="arrow-circle-right" />
-         </a>
-       @endcan
-   </div>
+      <div class="dashboard small-box" style="background: linear-gradient(135deg, #3498db, #2980b9); color: white;">
+        <div class="inner">
+          <h3>{{ number_format($counts['user']) }}</h3>
+          <p>{{ trans('general.people') }}</p>
+        </div>
+        <div class="icon"><x-icon type="users" /></div>
+        <a href="{{ route('users.index') }}" class="small-box-footer">{{ trans('general.view_all') }}
+          <x-icon type="arrow-circle-right" />
+        </a>
+      </div>
     </a>
- </div><!-- ./col -->
-
+  </div>
 </div>
+
 </div>
 
 @if ($counts['grand_total'] == 0)

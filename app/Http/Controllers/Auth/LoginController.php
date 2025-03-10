@@ -333,7 +333,7 @@ class LoginController extends Controller
             $user->saveQuietly();
         }
         // Redirect to the users page
-        return redirect()->intended()->with('success', trans('auth/message.signin.success'));
+        return redirect()->route('home')->with('success', trans('auth/message.signin.success'));
     }
 
 
